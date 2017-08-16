@@ -9,6 +9,7 @@ public class TheSnakeGame extends PApplet{
 	private Snake snake;
 	private Food food;
 	private int grid = 20;
+	private int gameSpeed = 8;
 	private boolean running = true;
 	
 	public static void main (String[] args){
@@ -23,7 +24,7 @@ public class TheSnakeGame extends PApplet{
 	public void setup(){
 		snake = new Snake(this, grid);		
 		food = new Food(this, grid);
-		frameRate(8);
+		frameRate(gameSpeed);
 	}
 	
 	public void draw(){
@@ -31,13 +32,10 @@ public class TheSnakeGame extends PApplet{
 		fill(new Color(208,201,195).getRGB());
 		textSize(13); ;
 		text("Author: Marek Bodziony", 10, height - 10);
-		
-		if (running){
-			if (!snake.dead()) snake.move();
-			snake.eat(food);
-			food.display();
-		}
+		if (!snake.dead()) snake.move();						
+		food.display();			
 		snake.display();
+		snake.eat(food);		
 	}
 
 }

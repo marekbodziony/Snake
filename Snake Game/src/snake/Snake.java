@@ -14,12 +14,9 @@ public class Snake{
 	int xSpeed;
 	int ySpeed = 0;
 	
-	//int player = 1;
-	int size = 1;
-	int [][] snakeTrack = new int[2][100];		// maximum snake size is set to 100
-	
-	int up, down, left, right; 					// needed for 2 player game
-
+	int size = 1;	
+	int maxSize = 100;								// maximum snake size is set to 100
+	int [][] snakeTrack = new int[2][maxSize];		
 	
 	public Snake(PApplet parent, int grid){
 		this.p = parent;
@@ -29,7 +26,6 @@ public class Snake{
 	
 	public void display(){
 		p.fill(color.getRGB());
-		//if(player != 1) color = new Color(168,93,27);
 		p.stroke(255);
 		for (int i = 0; i < size; i++){
 			p.rect(snakeTrack[0][i], snakeTrack[1][i], grid, grid);
@@ -63,37 +59,23 @@ public class Snake{
 			snakeTrack[1][0] = y;
 		}
 		
-		
-		//if (player == 1){
-			up = processing.core.PApplet.UP;
-			down = processing.core.PApplet.DOWN;
-			left = processing.core.PApplet.LEFT;
-			right = processing.core.PApplet.RIGHT;
-//		}
-//		if (player == 2){
-//			up = 87;
-//			down = 83;
-//			left = 65;
-//			right = 68;
-//		}
-		
 		// if DOWN is pressed and snake moves horizontally it turns down 
-		if (p.keyCode == down && ySpeed == 0 ){
+		if (p.keyCode == processing.core.PApplet.DOWN && ySpeed == 0 ){
 			xSpeed = 0;
 			ySpeed = grid;
 		}
 		// if UP is pressed and snake moves horizontally it turns down
-		if (p.keyCode == up && ySpeed == 0){
+		else if (p.keyCode == processing.core.PApplet.UP && ySpeed == 0){
 			xSpeed = 0;
 			ySpeed = -grid;			
 		}
 		// if LEFT is pressed and snake moves vertically it turns down
-		if (p.keyCode == left && xSpeed == 0){
+		else if (p.keyCode == processing.core.PApplet.LEFT && xSpeed == 0){
 			xSpeed = -grid;
 			ySpeed = 0;
 		}
 		// if RIGHT is pressed and snake moves vertically it turns down
-		if (p.keyCode == right && xSpeed == 0){
+		else if (p.keyCode == processing.core.PApplet.RIGHT && xSpeed == 0){
 			xSpeed = grid;
 			ySpeed = 0;
 		}		
@@ -134,21 +116,9 @@ public class Snake{
 				xSpeed = 0;
 				ySpeed = 0;
 				color = new Color(179, 45, 45);
-				//if (player == 2) color = new Color(250, 123, 11);
 				return true;
 			}
 		}
 		return false;
-	}
-
-	public void eatAnotherSnake(Snake snake2){
-		for (int i = 0; i < snake2.size; i++){
-			if (x == snake2.snakeTrack[0][i] - xSpeed && y == snake2.snakeTrack[1][i] - ySpeed){
-				xSpeed = 0;
-				ySpeed = 0;
-				color = new Color(179, 45, 45);
-				//if (player == 2) color = new Color(250, 123, 11);
-			}
-		}
 	}
 }
