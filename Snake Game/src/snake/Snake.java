@@ -103,12 +103,12 @@ public class Snake{
 		
 	public boolean dead(){
 		// check if snake hit the edge it's and of the game (options with borders)
-		if (x >= p.width - grid || x <= 0 || y >= p.height - grid || y <= 0){
+//		if (x >= p.width - grid || x <= 0 || y >= p.height - grid || y <= 0){
 //			xSpeed = 0;
 //			ySpeed = 0;
 //			color = new Color(179, 45, 45);
 //			return true;
-			}
+//			}
 		
 		// check if snake eat himself
 		for (int i = 1; i < size; i++){

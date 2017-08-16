@@ -10,7 +10,6 @@ public class TheSnakeGame extends PApplet{
 	private Food food;
 	private int grid = 20;
 	private int gameSpeed = 8;
-	private boolean running = true;
 	
 	public static void main (String[] args){
 		
